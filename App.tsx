@@ -1,4 +1,4 @@
-
+﻿
 import React, { useState, useCallback, useMemo, useEffect } from 'react';
 import { Workshop as WorkshopType, HistoryEntry } from './types';
 import { useLocalStorage } from './hooks/useLocalStorage';
