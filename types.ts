@@ -35,6 +35,7 @@ export interface HistoryEntry {
   maintenanceDate: string; // The date of completion, editable
   originalCompletionDate: string; // When the entry was created
   editCount: number;
+  notes?: string;
 }
 
 export interface HistoryEntryWithStatus extends HistoryEntry {

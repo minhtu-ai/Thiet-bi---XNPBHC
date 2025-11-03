@@ -57,7 +57,7 @@ function App() {
     setWorkshops(prev => prev.filter(workshop => workshop.id !== workshopId));
   }, [setWorkshops]);
 
-  const completeMaintenance = useCallback((workshopId: string, equipmentId: string, taskId: string, completionDate: string) => {
+  const completeMaintenance = useCallback((workshopId: string, equipmentId: string, taskId: string, completionDate: string, notes?: string) => {
     let taskName = '';
     let equipmentName = '';
     let workshopName = '';
@@ -103,6 +103,7 @@ function App() {
       maintenanceDate: new Date(completionDate).toISOString(),
       originalCompletionDate: nowISO,
       editCount: 0,
+      notes: notes,
     };
     setHistory(prev => [newHistoryEntry, ...prev]);
   }, [workshops, setWorkshops, setHistory]);
@@ -128,9 +129,12 @@ function App() {
     <div className="h-screen w-screen flex flex-col bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-200 font-sans overflow-hidden">
       <header className="bg-white dark:bg-slate-800 shadow-md sticky top-0 z-20 flex-shrink-0">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-          <h1 className="text-2xl sm:text-3xl font-bold text-sky-600 dark:text-sky-400">
-            Bảng điều khiển bảo trì
-          </h1>
+          <div>
+            <h2 className="text-sm sm:text-base font-medium text-slate-600 dark:text-slate-400">CÔNG TY CỔ PHẦN PHÂN BÓN VÀ HÓA CHẤT CẦN THƠ</h2>
+            <h1 className="text-2xl sm:text-3xl font-bold text-sky-600 dark:text-sky-400">
+              Bảng theo dõi thiết bị
+            </h1>
+          </div>
           <div className="flex items-center space-x-2">
             <button
               onClick={() => setHistoryModalOpen(true)}
@@ -143,7 +147,7 @@ function App() {
               onClick={() => setAddWorkshopModalOpen(true)}
               className="flex items-center bg-sky-600 text-white px-3 sm:px-4 py-2 rounded-lg shadow-md hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500 focus:ring-offset-slate-100 dark:focus:ring-offset-slate-900 transition-transform transform hover:scale-105"
             >
-              <PlusIcon />
+              <PlusIcon className="w-6 h-6" />
               <span className="hidden sm:inline ml-2 font-semibold">Thêm xưởng</span>
             </button>
           </div>
